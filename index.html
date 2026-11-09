@@ -23,22 +23,16 @@
     body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate { animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .animate { animation: fadeUp 0.8s ease-out both; }
     .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.18s; }
-    .delay-3 { animation-delay: 0.26s; }
-    .delay-4 { animation-delay: 0.34s; }
-
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
     nav { position: sticky; top: 0; background: rgba(255,255,255,0.75); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); z-index: 100; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .logo { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; }
-    .logo svg { width: 32px; height: 32px; transition: transform 0.3s ease; }
-    .logo:hover svg { transform: rotate(8deg) scale(1.05); }
+    .logo img { width: 40px; height: 40px; object-fit: contain; border-radius: 8px; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a { font-size: 0.94rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
@@ -47,16 +41,8 @@
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 153, 51, 0.45); }
     .btn-outline { border: 1px solid var(--border); color: var(--ink); background: white; }
     .btn-outline:hover { border-color: #ddd; background: var(--bg-soft); transform: translateY(-1px); }
-
     .hero { padding: 140px 0 100px; position: relative; }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,153,51,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
+    .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,153,51,0.08) 0%, transparent 70%); pointer-events: none; }
     .hero-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
     .eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); background: var(--primary-soft); padding: 7px 14px; border-radius: 999px; margin-bottom: 28px; }
     .hero h1 { font-family: 'Outfit', sans-serif; font-size: 4.4rem; font-weight: 700; line-height: 1.0; letter-spacing: -0.05em; margin-bottom: 22px; }
@@ -66,9 +52,8 @@
     .stats { display: flex; gap: 56px; justify-content: center; margin-top: 88px; padding-top: 48px; border-top: 1px solid var(--border); }
     .stat strong { display: block; font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
     .stat span { font-size: 0.88rem; color: var(--muted); }
-
     .section { padding: 120px 0; }
-    .section-header { text-align: center; max-width: 540px; margin: 0 auto 64px; }
+    .section-header { text-align: center; max-width: 520px; margin: 0 auto 64px; }
     .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
     .section-header p { color: var(--muted); font-size: 1.05rem; }
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -80,28 +65,23 @@
     .feature:hover .feature-icon { transform: scale(1.08); }
     .feature h3 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em; }
     .feature p { color: var(--muted); font-size: 0.96rem; }
-
     .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
     .step { text-align: center; padding: 24px; }
     .step-number { width: 56px; height: 56px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
     .step h3 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; margin-bottom: 8px; }
     .step p { color: var(--muted); font-size: 0.95rem; }
-
     .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .benefit-list { display: flex; flex-direction: column; gap: 20px; }
     .benefit { display: flex; gap: 16px; align-items: flex-start; }
     .benefit-icon { width: 40px; height: 40px; background: var(--primary-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .benefit h4 { font-size: 1.05rem; margin-bottom: 4px; }
     .benefit p { color: var(--muted); font-size: 0.92rem; }
-
     .cta { padding: 120px 0; background: linear-gradient(180deg, var(--bg-soft) 0%, #fff 100%); text-align: center; }
     .cta h2 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
     .cta p { color: var(--muted); margin-bottom: 32px; font-size: 1.1rem; }
-
     footer { padding: 72px 0 40px; border-top: 1px solid var(--border); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; text-align: center; color: var(--muted); font-size: 0.84rem; }
-
     @media (max-width: 900px) {
       .hero h1 { font-size: 3rem; }
       .features, .steps, .benefits, .footer-grid, .stats { grid-template-columns: 1fr; flex-direction: column; gap: 28px; }
@@ -114,14 +94,9 @@
 <body>
   <nav>
     <div class="container nav-inner">
-      <a href="/" class="logo">
-        <svg viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="20" r="18" fill="#FF9933"/>
-          <path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <circle cx="20" cy="14" r="2.5" fill="white"/>
-        </svg>
-        Trade Help Desk
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Trade Help Desk">
+        <span>Trade Help Desk</span>
       </a>
       <div class="nav-links">
         <a href="#features">Features</a>
@@ -159,47 +134,20 @@
         <p>From request to payment, handled cleanly.</p>
       </div>
       <div class="features">
-        <div class="feature">
-          <div class="feature-icon">🔧</div>
-          <h3>Jobs & Priorities</h3>
-          <p>Work orders with clear priority levels, categories, photos, and a full timeline.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">📄</div>
-          <h3>Quotes & Invoices</h3>
-          <p>Professional quotes that convert directly into invoices. Multiple templates included.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">🏠</div>
-          <h3>Properties & Clients</h3>
-          <p>Manage sites and contacts together. Every job linked to the right property.</p>
-        </div>
+        <div class="feature"><div class="feature-icon">🔧</div><h3>Jobs & Priorities</h3><p>Work orders with clear priority levels, categories, photos, and a full timeline.</p></div>
+        <div class="feature"><div class="feature-icon">📄</div><h3>Quotes & Invoices</h3><p>Professional quotes that convert directly into invoices. Multiple templates included.</p></div>
+        <div class="feature"><div class="feature-icon">🏠</div><h3>Properties & Clients</h3><p>Manage sites and contacts together. Every job linked to the right property.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="how" style="background: var(--bg-soft);">
     <div class="container">
-      <div class="section-header">
-        <h2>How it works</h2>
-        <p>Simple flow from request to payment.</p>
-      </div>
+      <div class="section-header"><h2>How it works</h2><p>Simple flow from request to payment.</p></div>
       <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Capture the job</h3>
-          <p>Create work orders with photos, priorities, and full details in seconds.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Quote & schedule</h3>
-          <p>Send professional quotes and convert them straight into invoices.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Get paid</h3>
-          <p>Track everything against properties and clients until payment is complete.</p>
-        </div>
+        <div class="step"><div class="step-number">1</div><h3>Capture the job</h3><p>Create work orders with photos, priorities, and full details in seconds.</p></div>
+        <div class="step"><div class="step-number">2</div><h3>Quote & schedule</h3><p>Send professional quotes and convert them straight into invoices.</p></div>
+        <div class="step"><div class="step-number">3</div><h3>Get paid</h3><p>Track everything against properties and clients until payment is complete.</p></div>
       </div>
     </div>
   </section>
@@ -211,27 +159,9 @@
           <h2 style="font-family: 'Outfit', sans-serif; font-size: 2.4rem; letter-spacing: -0.03em; margin-bottom: 16px;">Built for clarity</h2>
           <p style="color: var(--muted); margin-bottom: 32px;">Less noise. More control over every job, quote, and invoice.</p>
           <div class="benefit-list">
-            <div class="benefit">
-              <div class="benefit-icon">✓</div>
-              <div>
-                <h4>Priority that actually means something</h4>
-                <p>P1–P4 levels keep urgent work visible without cluttering the rest.</p>
-              </div>
-            </div>
-            <div class="benefit">
-              <div class="benefit-icon">✓</div>
-              <div>
-                <h4>Quotes that become invoices</h4>
-                <p>No retyping. Convert a quote into an invoice in one step.</p>
-              </div>
-            </div>
-            <div class="benefit">
-              <div class="benefit-icon">✓</div>
-              <div>
-                <h4>Everything linked</h4>
-                <p>Jobs, properties, clients, and payments stay connected.</p>
-              </div>
-            </div>
+            <div class="benefit"><div class="benefit-icon">✓</div><div><h4>Priority that actually means something</h4><p>P1–P4 levels keep urgent work visible without cluttering the rest.</p></div></div>
+            <div class="benefit"><div class="benefit-icon">✓</div><div><h4>Quotes that become invoices</h4><p>No retyping. Convert a quote into an invoice in one step.</p></div></div>
+            <div class="benefit"><div class="benefit-icon">✓</div><div><h4>Everything linked</h4><p>Jobs, properties, clients, and payments stay connected.</p></div></div>
           </div>
         </div>
         <div style="background: white; border: 1px solid var(--border); border-radius: 24px; padding: 48px; text-align: center;">
@@ -256,8 +186,8 @@
       <div class="footer-grid">
         <div>
           <div class="logo" style="margin-bottom:12px;">
-            <svg viewBox="0 0 40 40" width="26" height="26"><circle cx="20" cy="20" r="18" fill="#FF9933"/><path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none"/><path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none"/><circle cx="20" cy="14" r="2.5" fill="white"/></svg>
-            Trade Help Desk
+            <img src="logo.png" alt="Trade Help Desk" style="width:36px;height:36px;">
+            <span>Trade Help Desk</span>
           </div>
           <p style="color:var(--muted);font-size:0.92rem;max-width:260px;">Property maintenance and field service, simplified.</p>
         </div>
