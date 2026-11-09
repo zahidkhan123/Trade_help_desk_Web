@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Trade Help Desk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --primary: #FF9933; --primary-dark: #e67e00; --gray-50: #f8f9fa; --gray-200: #e9ecef; --gray-600: #868e96; --gray-900: #212529; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--gray-900); background: var(--gray-50); }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    nav { background: white; border-bottom: 1px solid var(--gray-200); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.25rem; }
+    .btn { display: inline-flex; padding: 12px 24px; border-radius: 999px; font-weight: 600; background: var(--primary); color: white; border: none; cursor: pointer; }
+    .btn:hover { background: var(--primary-dark); }
+    .page { padding: 80px 0; }
+    h1 { font-size: 2.75rem; font-weight: 800; margin-bottom: 12px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; }
+    form { background: white; padding: 32px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.06); }
+    label { display: block; font-weight: 500; margin-bottom: 6px; }
+    input, textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--gray-200); border-radius: 10px; font-family: inherit; margin-bottom: 20px; }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+    .info { padding: 20px 0; }
+    .info div { margin-bottom: 24px; }
+    @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 40 40" width="32" height="32"><circle cx="20" cy="20" r="18" fill="#FF9933"/><path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/><circle cx="20" cy="14" r="2.5" fill="white"/></svg>
+        Trade Help Desk
+      </a>
+      <a href="index.html">← Back to Home</a>
+    </div>
+  </nav>
+
+  <div class="page">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p style="color:var(--gray-600);font-size:1.15rem;">Have a question or want a demo? We’d love to hear from you.</p>
+
+      <div class="grid">
+        <form>
+          <label>Name</label>
+          <input type="text" placeholder="Your name" required />
+          <label>Email</label>
+          <input type="email" placeholder="you@company.com" required />
+          <label>Company</label>
+          <input type="text" placeholder="Company name" />
+          <label>Message</label>
+          <textarea rows="5" placeholder="How can we help?" required></textarea>
+          <button class="btn" type="submit">Send Message</button>
+        </form>
+        <div class="info">
+          <div>
+            <strong>Email</strong>
+            <p style="color:var(--gray-600);margin-top:4px;">hello@tradehelpdesk.com</p>
+          </div>
+          <div>
+            <strong>Support</strong>
+            <p style="color:var(--gray-600);margin-top:4px;">support@tradehelpdesk.com</p>
+          </div>
+          <div>
+            <strong>Response time</strong>
+            <p style="color:var(--gray-600);margin-top:4px;">We usually reply within one business day.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
