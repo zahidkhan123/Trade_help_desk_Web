@@ -141,6 +141,22 @@
     .cta h2 { background: linear-gradient(135deg, var(--ink), var(--primary), var(--ink)); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 8s ease infinite; }
     html.dark .cta h2 { background: linear-gradient(135deg, #f5f5f5, #FF9933, #f5f5f5); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+    /* Interactive enhancements */
+    .mobile-menu { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(-10px); opacity: 0; pointer-events: none; }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .btn { position: relative; overflow: hidden; }
+    .btn::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at var(--x,50%) var(--y,50%), rgba(255,255,255,0.3) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+    .btn:hover::after { opacity: 1; }
+    .feature { transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s; }
+    .stat { transition: transform 0.3s; }
+    .stat:hover { transform: scale(1.05); }
+    .benefit { transition: transform 0.3s; }
+    .benefit:hover { transform: translateX(6px); }
+    .logo { transition: transform 0.3s; }
+    .logo:hover { transform: scale(1.03); }
+    @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .stat strong { animation: countUp 0.6s ease both; }
+
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     @media (max-width: 1024px) {
       .hero h1 { font-size: 3.6rem; }
@@ -337,6 +353,7 @@
       setTheme(saved === 'dark' || (!saved && prefersDark));
       toggles.forEach(t => { if (t) t.addEventListener('click', () => setTheme(!html.classList.contains('dark'))); });
 
+      // Mobile menu
       const menuBtn = document.getElementById('menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuBtn && mobileMenu) {
@@ -349,6 +366,42 @@
           menuBtn.textContent = '☰';
         }));
       }
+
+      // Magnetic buttons
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mousemove', e => {
+          const rect = btn.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          btn.style.setProperty('--x', x + '%');
+          btn.style.setProperty('--y', y + '%');
+        });
+      });
+
+      // Scroll-triggered reveals
+      const reveals = document.querySelectorAll('.reveal, .feature, .step, .benefit');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      reveals.forEach(el => observer.observe(el));
+
+      // Card tilt
+      document.querySelectorAll('.feature').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `translateY(-8px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+        });
+      });
     })();
   </script>
 </body>
