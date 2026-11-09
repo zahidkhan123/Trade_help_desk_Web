@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { site } from '../data/site';
+
+const toc = [
+  ['who-we-are', 'Who we are'],
+  ['information-we-collect', 'Information we collect'],
+  ['how-we-use', 'How we use your information'],
+  ['data-sharing', 'Data sharing'],
+  ['data-security', 'Data security'],
+  ['your-rights', 'Your rights'],
+  ['international-transfers', 'International transfers'],
+  ['contact', 'Contact'],
+];
+const mail = `mailto:${site.privacyEmail}`;
+---
+<BaseLayout
+  title="Privacy Policy — Trade Help Desk"
+  description="Privacy Policy for Trade Help Desk. Learn how we collect, use, and protect your data under UK GDPR and the Data Protection Act 2018."
+>
+  <PageHeader eyebrow="Legal" title="Privacy Policy">
+    <p class="updated">Last updated: <time datetime="2026-11-09">9 November 2026</time></p>
+  </PageHeader>
+
+  <section class="section body">
+    <div class="container layout">
+      <nav class="toc" aria-label="On this page">
+        <p class="toc-title">On this page</p>
+        <ol>
+          {toc.map(([id, label]) => (<li><a href={`#${id}`}>{label}</a></li>))}
+        </ol>
+      </nav>
+
+      <article class="prose">
+        <p class="intro">Trade Help Desk (“we”, “us”, or “our”) provides a property maintenance and field service management platform. This Privacy Policy explains how we collect, use, and protect your personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.</p>
+
+        <h2 id="who-we-are">1. Who we are</h2>
+        <p>Trade Help Desk is the data controller for the personal data we process. If you have questions about this policy or how we handle your data, contact us at <a href={mail}>{site.privacyEmail}</a>.</p>
+
+        <h2 id="information-we-collect">2. Information we collect</h2>
+        <ul>
+          <li>Account information (name, email address, company details)</li>
+          <li>Property, job, quote, and invoice data you create in the platform</li>
+          <li>Usage data and device information</li>
+          <li>Files you upload (stored securely)</li>
+        </ul>
+
+        <h2 id="how-we-use">3. How we use your information</h2>
+        <p>We process your personal data to:</p>
+        <ul>
+          <li>Provide and improve the Trade Help Desk service</li>
+          <li>Manage jobs, quotes, invoices, and properties</li>
+          <li>Send service-related notifications</li>
+          <li>Communicate with you about your account</li>
+        </ul>
+        <p>Our legal bases for processing under UK GDPR include performance of a contract, legitimate interests, and, where required, your consent.</p>
+
+        <h2 id="data-sharing">4. Data sharing</h2>
+        <p>We do not sell your personal information. We may share data with trusted service providers (such as cloud hosting and email delivery providers) who process data on our behalf under appropriate agreements. We only share data when necessary and in compliance with UK data protection law.</p>
+
+        <h2 id="data-security">5. Data security</h2>
+        <p>We implement appropriate technical and organisational measures to protect your data, including encrypted connections, secure authentication, and access controls. File uploads are handled via secure cloud storage.</p>
+
+        <h2 id="your-rights">6. Your rights</h2>
+        <p>Under UK GDPR you have the right to:</p>
+        <ul>
+          <li>Access the personal data we hold about you</li>
+          <li>Request correction of inaccurate data</li>
+          <li>Request erasure of your data in certain circumstances</li>
+          <li>Object to or restrict processing</li>
+          <li>Data portability</li>
+          <li>Withdraw consent where processing is based on consent</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at <a href={mail}>{site.privacyEmail}</a>. You also have the right to lodge a complaint with the Information Commissioner’s Office (ICO) at <a href="https://ico.org.uk" rel="noopener" target="_blank">ico.org.uk</a>.</p>
+
+        <h2 id="international-transfers">7. International transfers</h2>
+        <p>Where we transfer personal data outside the UK, we ensure appropriate safeguards are in place in accordance with UK GDPR.</p>
+
+        <h2 id="contact">8. Contact</h2>
+        <p>If you have questions about this Privacy Policy or how we process your data, email us at <a href={mail}><strong>{site.privacyEmail}</strong></a>.</p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .updated { color: var(--muted); font-size: 0.92rem; }
+  .body { padding-top: clamp(40px, 6vw, 64px); }
+  .layout { display: grid; grid-template-columns: 220px minmax(0, 720px); gap: clamp(32px, 6vw, 80px); }
+  .toc { position: sticky; top: calc(var(--header-h) + 24px); align-self: start; }
+  .toc-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; }
+  .toc ol { list-style: none; padding: 0; border-left: 1px solid var(--border); }
+  .toc a { display: block; padding: 6px 0 6px 14px; margin-left: -1px; border-left: 2px solid transparent; font-size: 0.9rem; color: var(--muted); transition: color 0.2s, border-color 0.2s; }
+  .toc a:hover { color: var(--ink); border-left-color: var(--brand); }
+
+  .prose { color: var(--ink-2); font-size: 1.02rem; line-height: 1.75; }
+  .prose .intro { font-size: 1.1rem; color: var(--ink); }
+  .prose h2 { font-size: 1.4rem; color: var(--ink); margin: 44px 0 12px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .prose p, .prose ul { margin-bottom: 14px; }
+  .prose ul { padding-left: 0; list-style: none; display: grid; gap: 8px; }
+  .prose li { position: relative; padding-left: 22px; }
+  .prose li::before { content: ''; position: absolute; left: 4px; top: 0.72em; width: 7px; height: 7px; border-radius: 2px; background: var(--brand); }
+  .prose a { color: var(--brand-ink); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+    .toc { position: static; padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-soft); }
+    .toc ol { border: 0; columns: 2; column-gap: 20px; }
+    .toc a { padding-left: 0; border: 0; }
+  }
+  @media (max-width: 480px) { .toc ol { columns: 1; } }
+</style>

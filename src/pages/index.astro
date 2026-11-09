@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Features from '../components/home/Features.astro';
+import HowItWorks from '../components/home/HowItWorks.astro';
+import Clarity from '../components/home/Clarity.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: site.name,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: site.description,
+  url: Astro.site?.toString(),
+};
+---
+<BaseLayout
+  title="Trade Help Desk — Property Maintenance & Field Service Management Software"
+  description={site.description}
+  schema={[softwareSchema]}
+>
+  <Hero />
+  <Features />
+  <HowItWorks />
+  <Clarity />
+  <CtaBand />
+</BaseLayout>

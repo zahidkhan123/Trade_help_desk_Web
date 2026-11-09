@@ -1,0 +1,154 @@
+---
+import Icon from '../Icon.astro';
+
+const jobs = [
+  { p: 1, title: 'Burst pipe under kitchen sink', place: '14 Elm Road, Flat 2', cat: 'Plumbing', status: 'In progress', tone: 'p2' },
+  { p: 2, title: 'Boiler not firing', place: '8 Mill Lane', cat: 'Heating', status: 'Scheduled', tone: 'muted' },
+  { p: 3, title: 'Replace extractor fan', place: 'Oak House, Unit 4', cat: 'Electrical', status: 'Quoted', tone: 'muted' },
+  { p: 4, title: 'Touch up hallway paintwork', place: '22 Park View', cat: 'Decorating', status: 'Open', tone: 'muted' },
+];
+---
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="container inner">
+    <div class="copy">
+      <span class="eyebrow" data-reveal>Property maintenance software</span>
+      <h1 data-reveal style="--d: 60ms">
+        Every job, quote and invoice — <span class="hl">organised.</span>
+      </h1>
+      <p class="lead" data-reveal style="--d: 120ms">
+        Trade Help Desk brings work orders, priorities, quotes, invoices and properties into one calm workspace — built for property maintenance and field service teams who prefer clarity.
+      </p>
+      <div class="cta-row" data-reveal style="--d: 180ms">
+        <a href="/contact" class="btn btn-primary btn-lg">Request a demo <Icon name="arrow-right" /></a>
+        <a href="#features" class="btn btn-secondary btn-lg">See features</a>
+      </div>
+      <ul class="ticks" data-reveal style="--d: 240ms">
+        <li><Icon name="check" size={16} strokeWidth={2.4} /> P1–P4 priorities</li>
+        <li><Icon name="check" size={16} strokeWidth={2.4} /> Quote to invoice in one step</li>
+        <li><Icon name="check" size={16} strokeWidth={2.4} /> Secure file storage</li>
+      </ul>
+    </div>
+
+    <!-- Illustrative product preview (sample data) -->
+    <div class="visual" data-reveal style="--d: 160ms" aria-hidden="true">
+      <div class="window">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="win-title">Jobs</span>
+          <span class="win-new">+ New job</span>
+        </div>
+        <div class="tabs">
+          <span class="on">All <b>24</b></span><span>Urgent <b>3</b></span><span>Scheduled <b>9</b></span><span class="hide-sm">Awaiting quote <b>5</b></span>
+        </div>
+        <ul class="jobs">
+          {jobs.map((j) => (
+            <li>
+              <span class={`pill pill-p${j.p}`}>P{j.p}</span>
+              <div class="job">
+                <strong>{j.title}</strong>
+                <span><Icon name="map-pin" size={13} /> {j.place} · {j.cat}</span>
+              </div>
+              <span class={`pill pill-${j.tone} status`}>{j.status}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="float float-a">
+        <span class="f-icon ok"><Icon name="receipt" size={18} /></span>
+        <div><strong>Quote Q-1042 → Invoice</strong><span>Converted in one step</span></div>
+      </div>
+      <div class="float float-b">
+        <span class="f-icon"><Icon name="camera" size={18} /></span>
+        <div><strong>3 photos added</strong><span>Burst pipe · timeline updated</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; overflow: hidden; padding-block: clamp(48px, 8vw, 96px) clamp(24px, 4vw, 48px); }
+  .glow {
+    position: absolute; inset: -30% -10% auto auto; width: 820px; height: 820px; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(255, 153, 51, 0.22), transparent 70%);
+    filter: blur(10px);
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 70% 60% at 60% 30%, #000 30%, transparent 75%);
+  }
+  .inner { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(40px, 6vw, 72px); align-items: center; }
+
+  h1 { font-size: clamp(2.35rem, 5.6vw, 4.1rem); line-height: 1.04; letter-spacing: -0.04em; margin-block: 18px 22px; font-weight: 700; }
+  .hl {
+    background: linear-gradient(100deg, #ff8a1f, #ffb366 60%, #ff8a1f);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  :global(html:not(.dark)) .hl { background-image: linear-gradient(100deg, #e46c00, #ff9933 60%, #e46c00); }
+  .lead { font-size: clamp(1.02rem, 1.5vw, 1.18rem); color: var(--muted); max-width: 540px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .ticks { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; color: var(--ink-2); font-size: 0.9rem; font-weight: 500; }
+  .ticks li { display: inline-flex; align-items: center; gap: 7px; }
+  .ticks :global(svg) { color: var(--brand-strong); }
+
+  /* --- product mockup --- */
+  .visual { position: relative; padding: 26px 0 40px; }
+  .window {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    box-shadow: var(--shadow-lg); overflow: hidden;
+    transform: perspective(1400px) rotateY(-5deg) rotateX(2deg);
+    transition: transform 0.6s var(--ease);
+  }
+  .visual:hover .window { transform: perspective(1400px) rotateY(0) rotateX(0); }
+  .win-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg-soft); }
+  .dots { display: flex; gap: 6px; }
+  .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
+  .win-title { font-weight: 650; font-size: 0.92rem; }
+  .win-new { margin-left: auto; font-size: 0.75rem; font-weight: 650; padding: 5px 10px; border-radius: 8px; background: var(--brand); color: var(--on-brand); }
+  .tabs { display: flex; gap: 6px; padding: 12px 16px 4px; font-size: 0.78rem; color: var(--muted); }
+  .tabs span { padding: 5px 10px; border-radius: 8px; white-space: nowrap; }
+  .tabs b { font-weight: 600; opacity: 0.7; margin-left: 2px; }
+  .tabs .on { background: var(--bg-sunken); color: var(--ink); font-weight: 600; }
+  .jobs { list-style: none; padding: 6px 8px 10px; }
+  .jobs li { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 11px 10px; border-radius: 12px; }
+  .jobs li + li { border-top: 1px dashed var(--border); }
+  .jobs li:first-child { background: color-mix(in srgb, var(--brand) 6%, transparent); }
+  .job { min-width: 0; display: grid; }
+  .job strong { font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job span { display: inline-flex; align-items: center; gap: 4px; font-size: 0.76rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job span :global(svg) { flex-shrink: 0; }
+
+  .float {
+    position: absolute; display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px 16px 12px 12px; box-shadow: var(--shadow-md); font-size: 0.8rem;
+    animation: bob 6s ease-in-out infinite;
+  }
+  .float strong { display: block; font-size: 0.84rem; font-weight: 650; }
+  .float span { color: var(--muted); }
+  .f-icon { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--brand-soft); color: var(--brand-ink); flex-shrink: 0; }
+  .f-icon.ok { background: var(--ok-bg); color: var(--ok); }
+  .float-a { right: -14px; bottom: 0; }
+  .float-b { left: -22px; top: 0; animation-delay: -3s; }
+  @keyframes bob { 50% { transform: translateY(-6px); } }
+
+  @media (max-width: 980px) {
+    .inner { grid-template-columns: 1fr; }
+    .copy { text-align: center; }
+    .lead { margin-inline: auto; }
+    .cta-row, .ticks { justify-content: center; }
+    .visual { max-width: 600px; margin-inline: auto; width: 100%; }
+    .window { transform: none; }
+    .float-b { left: -8px; } .float-a { right: -8px; }
+  }
+  @media (max-width: 560px) {
+    .cta-row .btn { flex: 1 1 100%; }
+    .hide-sm, .status { display: none; }
+    .float { position: static; margin-top: 10px; animation: none; }
+    .visual { padding: 0; display: grid; gap: 0; }
+    .float-b { order: 2; } .float-a { order: 3; }
+  }
+</style>

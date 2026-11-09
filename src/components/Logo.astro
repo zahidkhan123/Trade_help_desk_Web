@@ -1,0 +1,17 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
+
+interface Props { size?: number; }
+const { size = 36 } = Astro.props;
+---
+<a href="/" class="logo" aria-label={`${site.name} home`}>
+  <Image src={logo} alt="" width={size} height={size} densities={[1, 2]} loading="eager" />
+  <span>Trade Help Desk</span>
+</a>
+
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 650; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--ink); }
+  .logo img { flex-shrink: 0; }
+</style>

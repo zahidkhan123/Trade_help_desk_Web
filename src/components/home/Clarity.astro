@@ -1,0 +1,101 @@
+---
+import Icon from '../Icon.astro';
+
+const benefits = [
+  { icon: 'flag', title: 'Priority that actually means something', text: 'P1–P4 levels keep urgent work visible without cluttering the rest.' },
+  { icon: 'receipt', title: 'Quotes that become invoices', text: 'No retyping. Convert a quote into an invoice in one step.' },
+  { icon: 'link', title: 'Everything linked', text: 'Jobs, properties, clients and payments stay connected.' },
+] as const;
+
+const lines = [
+  { item: 'Call-out & diagnosis', amt: '£85.00' },
+  { item: 'Replace compression valve', amt: '£120.00' },
+  { item: 'Parts & materials', amt: '£42.50' },
+];
+---
+<section class="section" id="why">
+  <div class="container inner">
+    <div>
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Built for clarity</span>
+        <h2>Less noise. More control over every job.</h2>
+        <p>One workspace for jobs, quotes, invoices and properties — so your team always knows what's next.</p>
+      </div>
+      <ul class="benefits">
+        {benefits.map((b, i) => (
+          <li data-reveal style={`--d: ${i * 80}ms`}>
+            <span class="b-icon"><Icon name={b.icon} size={20} /></span>
+            <div>
+              <h3>{b.title}</h3>
+              <p>{b.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Illustrative quote → invoice card (sample data) -->
+    <div class="doc-stack" data-reveal style="--d: 120ms" aria-hidden="true">
+      <div class="doc back">
+        <div class="doc-head"><span class="doc-type">Quote</span><span class="pill pill-muted">Q-1042</span></div>
+      </div>
+      <div class="doc front">
+        <div class="doc-head">
+          <div>
+            <span class="doc-type">Invoice</span>
+            <span class="doc-ref">INV-2087 · from Quote Q-1042</span>
+          </div>
+          <span class="pill pill-ok"><Icon name="check" size={12} strokeWidth={3} /> Converted</span>
+        </div>
+        <div class="meta">
+          <div><span>Property</span><strong>14 Elm Road, Flat 2</strong></div>
+          <div><span>Job</span><strong>Burst pipe <em class="pill pill-p1">P1</em></strong></div>
+        </div>
+        <table>
+          <tbody>
+            {lines.map((l) => (<tr><td>{l.item}</td><td>{l.amt}</td></tr>))}
+          </tbody>
+          <tfoot><tr><td>Total</td><td>£247.50</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 88px); align-items: center; }
+  .section-head { margin-bottom: 36px; }
+  .benefits { list-style: none; padding: 0; display: grid; gap: 14px; }
+  .benefits li {
+    display: flex; gap: 16px; align-items: flex-start; padding: 18px; border-radius: var(--radius);
+    border: 1px solid transparent; transition: background-color 0.25s, border-color 0.25s;
+  }
+  .benefits li:hover { background: var(--bg-soft); border-color: var(--border); }
+  .b-icon { width: 42px; height: 42px; flex-shrink: 0; display: grid; place-items: center; border-radius: 12px; background: var(--brand-soft); color: var(--brand-ink); }
+  h3 { font-family: var(--font-sans); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .benefits p { color: var(--muted); font-size: 0.94rem; }
+
+  .doc-stack { position: relative; padding: 58px 28px 0 0; }
+  .doc { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-lg); }
+  .back { position: absolute; inset: 0 0 60px 28px; transform: rotate(2.5deg); transform-origin: top right; box-shadow: var(--shadow-md); background: var(--bg-soft); padding: 18px 22px; }
+  .back .doc-type { font-size: 1.05rem; color: var(--muted); }
+  .front { position: relative; }
+  .doc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+  .doc-type { display: block; font-family: var(--font-display); font-size: 1.35rem; font-weight: 650; }
+  .doc-ref { font-size: 0.8rem; color: var(--muted); }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; border-radius: 12px; background: var(--bg-soft); margin-bottom: 18px; }
+  .meta span { display: block; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .meta strong { font-size: 0.88rem; font-weight: 600; display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .meta em { font-style: normal; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  td { padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--ink-2); }
+  td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+  tfoot td { border-bottom: 0; padding-top: 14px; font-weight: 700; font-size: 1rem; color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .inner { grid-template-columns: 1fr; }
+    .doc-stack { max-width: 520px; width: 100%; margin-inline: auto; padding: 54px 16px 0 0; }
+    .back { inset: 0 0 60px 16px; }
+  }
+  @media (max-width: 420px) { .meta { grid-template-columns: 1fr; } .doc { padding: 18px; } }
+</style>

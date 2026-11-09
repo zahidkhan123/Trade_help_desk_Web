@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="cta-wrap">
+  <div class="container">
+    <div class="cta" data-reveal>
+      <div class="rings" aria-hidden="true"></div>
+      <div class="text">
+        <h2>Ready when you are.</h2>
+        <p>See how Trade Help Desk can organise your team's jobs, quotes and invoices. We usually reply within one business day.</p>
+      </div>
+      <div class="buttons">
+        <a href="/contact" class="btn btn-lg light">Request a demo <Icon name="arrow-right" /></a>
+        <a href={`mailto:${site.email}`} class="btn btn-lg outline"><Icon name="mail" /> Email us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-wrap { padding-block: 0 clamp(72px, 10vw, 120px); }
+  .cta {
+    position: relative; overflow: hidden; isolation: isolate;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+    padding: clamp(36px, 6vw, 64px);
+    border-radius: 28px;
+    background: linear-gradient(135deg, #ff9933 0%, #f27a10 55%, #d9620a 100%);
+    color: #1c1006;
+    box-shadow: 0 30px 60px -30px rgba(217, 98, 10, 0.6);
+  }
+  .rings {
+    position: absolute; z-index: -1; right: -120px; top: -160px; width: 520px; height: 520px; border-radius: 50%;
+    background: repeating-radial-gradient(circle, rgba(255, 255, 255, 0.16) 0 1px, transparent 1px 44px);
+  }
+  .text { max-width: 560px; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); margin-bottom: 10px; letter-spacing: -0.03em; }
+  p { font-size: 1.05rem; color: rgba(28, 16, 6, 0.8); }
+  .buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+  .light { background: #1c1006; color: #fff; }
+  .light:hover { background: #000; transform: translateY(-1px); }
+  .outline { border-color: rgba(28, 16, 6, 0.35); color: #1c1006; }
+  .outline:hover { background: rgba(255, 255, 255, 0.2); }
+  @media (max-width: 560px) { .buttons, .buttons .btn { width: 100%; } }
+</style>

@@ -1,0 +1,54 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div class="brand">
+        <Logo size={32} />
+        <p>{site.tagline} Jobs, quotes, invoices and properties in one organised workspace.</p>
+      </div>
+      <div>
+        <h2>Product</h2>
+        <ul>
+          <li><a href="/#features">Features</a></li>
+          <li><a href="/#how-it-works">How it works</a></li>
+          <li><a href="/contact">Request a demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/privacy">Privacy policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Get in touch</h2>
+        <ul>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p><a href="/privacy">Privacy</a></p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--border); background: var(--bg-soft); padding-block: 64px 32px; }
+  .grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.3fr; gap: 40px; }
+  .brand p { margin-top: 14px; color: var(--muted); font-size: 0.93rem; max-width: 300px; }
+  h2 { font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); margin-bottom: 14px; }
+  ul { list-style: none; padding: 0; display: grid; gap: 10px; }
+  li a { color: var(--muted); font-size: 0.93rem; transition: color 0.2s; overflow-wrap: anywhere; }
+  li a:hover, .bottom a:hover { color: var(--ink); }
+  .bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 0.86rem; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } .brand { grid-column: 1 / -1; } }
+  @media (max-width: 480px) { .grid { grid-template-columns: 1fr; gap: 32px; } }
+</style>

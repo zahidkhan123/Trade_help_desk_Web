@@ -1,0 +1,58 @@
+---
+import Icon from '../Icon.astro';
+
+const features = [
+  { icon: 'flag', title: 'Jobs & priorities', text: 'Work orders with P1–P4 priority levels and categories, so urgent work stays visible without cluttering the rest.' },
+  { icon: 'camera', title: 'Photos & full timeline', text: 'Attach photos to every job and follow its complete history — from first report to sign-off — in one timeline.' },
+  { icon: 'file-text', title: 'Professional quotes', text: 'Send polished, professional quotes in minutes using multiple included templates.' },
+  { icon: 'receipt', title: 'Quote-to-invoice', text: 'Convert a quote straight into an invoice in one step. No retyping, no copy-paste errors.' },
+  { icon: 'home', title: 'Properties & clients', text: 'Manage sites and contacts together. Every job is linked to the right property and client.' },
+  { icon: 'upload-cloud', title: 'Secure file uploads', text: 'Photos and documents are stored in secure cloud storage (Amazon S3), right where your team needs them.' },
+] as const;
+---
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <span class="eyebrow">Features</span>
+      <h2>Everything you need, from request to payment</h2>
+      <p>Field service management tools that cover the whole job lifecycle — without the noise.</p>
+    </div>
+
+    <div class="grid">
+      {features.map((f, i) => (
+        <article class="card" data-reveal style={`--d: ${(i % 3) * 70}ms`}>
+          <span class="icon-wrap"><Icon name={f.icon} size={22} /></span>
+          <h3>{f.title}</h3>
+          <p>{f.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card {
+    position: relative; padding: 30px 28px; border-radius: var(--radius-lg);
+    background: var(--card); border: 1px solid var(--border);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: radial-gradient(400px circle at 0% 0%, color-mix(in srgb, var(--brand) 9%, transparent), transparent 60%);
+    opacity: 0; transition: opacity 0.35s;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+  .card:hover::before { opacity: 1; }
+  .icon-wrap {
+    width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px;
+    background: var(--brand-soft); color: var(--brand-ink); margin-bottom: 22px;
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--brand) 22%, transparent);
+    transition: transform 0.35s var(--ease);
+  }
+  .card:hover .icon-wrap { transform: scale(1.06) rotate(-4deg); }
+  .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 0.96rem; }
+  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } .card { padding: 24px 22px; } }
+</style>
