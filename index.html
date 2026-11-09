@@ -123,36 +123,41 @@
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
     }
     @media (max-width: 900px) {
-      .container { padding: 0 20px; }
-      .hero { padding: 100px 0 70px; }
-      .hero h1 { font-size: 2.8rem; }
-      .hero p { font-size: 1.05rem; }
-      .features, .steps, .benefits, .footer-grid, .stats { grid-template-columns: 1fr; gap: 24px; }
-      .stats { flex-direction: column; align-items: center; gap: 32px; }
+      .container { padding: 0 16px; }
+      .hero { padding: 80px 0 50px; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 1rem; max-width: 100%; }
+      .features, .steps, .benefits, .footer-grid, .stats { grid-template-columns: 1fr; gap: 20px; }
+      .stats { flex-direction: column; align-items: center; gap: 24px; }
       .nav-links { display: none; }
       .menu-btn { display: flex; }
       #theme-toggle-mobile { display: flex; }
       #theme-toggle { display: none; }
-      .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
-      .section { padding: 80px 0; }
-      .section-header h2 { font-size: 2rem; }
-      .cta { padding: 80px 0; }
-      .cta h2 { font-size: 2.2rem; }
-      .logo span { font-size: 1.05rem; }
-      .benefits { gap: 32px; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+      .hero-actions .btn { width: 100%; }
+      .section { padding: 60px 0; }
+      .section-header h2 { font-size: 1.85rem; }
+      .cta { padding: 60px 0; }
+      .cta h2 { font-size: 1.9rem; }
+      .logo span { font-size: 1rem; }
+      .benefits { gap: 24px; }
+      .nav-inner { height: 64px; }
     }
     @media (max-width: 640px) {
-      .hero h1 { font-size: 2.4rem; }
-      .section-header h2 { font-size: 1.8rem; }
-      .feature { padding: 28px 20px; }
+      .hero h1 { font-size: 2.1rem; }
+      .section-header h2 { font-size: 1.7rem; }
+      .feature { padding: 24px 16px; }
     }
     @media (max-width: 480px) {
-      .hero h1 { font-size: 2.1rem; }
-      .hero p { font-size: 1rem; }
-      .btn { width: 100%; max-width: 280px; padding: 14px 20px; }
-      .feature, .step { padding: 24px 16px; }
-      .stats { gap: 24px; }
-      .container { padding: 0 16px; }
+      .hero h1 { font-size: 1.9rem; }
+      .hero p { font-size: 0.96rem; }
+      .btn { width: 100%; padding: 14px 16px; }
+      .feature, .step { padding: 20px 14px; }
+      .stats { gap: 20px; }
+      .container { padding: 0 14px; }
+      .section-header h2 { font-size: 1.65rem; }
+      .cta h2 { font-size: 1.7rem; }
+      .logo img { width: 32px; height: 32px; }
     }
   </style>
 </head>
