@@ -125,6 +125,22 @@
     footer { padding: 72px 0 40px; border-top: 1px solid var(--border); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; text-align: center; color: var(--muted); font-size: 0.84rem; }
+
+    /* Advanced animations */
+    @keyframes revealUp { from { opacity: 0; transform: translateY(40px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes revealScale { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: scale(1); } }
+    .reveal { opacity: 0; transform: translateY(40px); animation: revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .reveal-delay-1 { animation-delay: 0.1s; }
+    .reveal-delay-2 { animation-delay: 0.2s; }
+    .reveal-delay-3 { animation-delay: 0.3s; }
+    .feature { transform-style: preserve-3d; }
+    .feature:hover { transform: translateY(-10px) rotateX(2deg); }
+    .step-number { position: relative; }
+    .step-number::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--primary); opacity: 0; transform: scale(0.8); transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+    .step:hover .step-number::after { opacity: 0.4; transform: scale(1.15); }
+    .cta h2 { background: linear-gradient(135deg, var(--ink), var(--primary), var(--ink)); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 8s ease infinite; }
+    html.dark .cta h2 { background: linear-gradient(135deg, #f5f5f5, #FF9933, #f5f5f5); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
     @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     @media (max-width: 1024px) {
       .hero h1 { font-size: 3.6rem; }
@@ -234,9 +250,9 @@
         <p>From request to payment, handled cleanly.</p>
       </div>
       <div class="features">
-        <div class="feature"><div class="feature-icon">🔧</div><h3>Jobs & Priorities</h3><p>Work orders with clear priority levels, categories, photos, and a full timeline.</p></div>
-        <div class="feature"><div class="feature-icon">📄</div><h3>Quotes & Invoices</h3><p>Professional quotes that convert directly into invoices. Multiple templates included.</p></div>
-        <div class="feature"><div class="feature-icon">🏠</div><h3>Properties & Clients</h3><p>Manage sites and contacts together. Every job linked to the right property.</p></div>
+        <div class="feature reveal reveal-delay-1"><div class="feature-icon">🔧</div><h3>Jobs & Priorities</h3><p>Work orders with clear priority levels, categories, photos, and a full timeline.</p></div>
+        <div class="feature reveal reveal-delay-2"><div class="feature-icon">📄</div><h3>Quotes & Invoices</h3><p>Professional quotes that convert directly into invoices. Multiple templates included.</p></div>
+        <div class="feature reveal reveal-delay-3"><div class="feature-icon">🏠</div><h3>Properties & Clients</h3><p>Manage sites and contacts together. Every job linked to the right property.</p></div>
       </div>
     </div>
   </section>
@@ -245,9 +261,9 @@
     <div class="container">
       <div class="section-header"><h2>How it works</h2><p>Simple flow from request to payment.</p></div>
       <div class="steps">
-        <div class="step"><div class="step-number">1</div><h3>Capture the job</h3><p>Create work orders with photos, priorities, and full details in seconds.</p></div>
-        <div class="step"><div class="step-number">2</div><h3>Quote & schedule</h3><p>Send professional quotes and convert them straight into invoices.</p></div>
-        <div class="step"><div class="step-number">3</div><h3>Get paid</h3><p>Track everything against properties and clients until payment is complete.</p></div>
+        <div class="step reveal reveal-delay-1"><div class="step-number">1</div><h3>Capture the job</h3><p>Create work orders with photos, priorities, and full details in seconds.</p></div>
+        <div class="step reveal reveal-delay-2"><div class="step-number">2</div><h3>Quote & schedule</h3><p>Send professional quotes and convert them straight into invoices.</p></div>
+        <div class="step reveal reveal-delay-3"><div class="step-number">3</div><h3>Get paid</h3><p>Track everything against properties and clients until payment is complete.</p></div>
       </div>
     </div>
   </section>
