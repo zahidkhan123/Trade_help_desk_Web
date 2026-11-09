@@ -63,8 +63,12 @@
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a { font-size: 0.94rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
-    .theme-btn { background: none; border: 1px solid var(--border); border-radius: 12px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.2s; color: var(--ink); }
-    .theme-btn:hover { background: var(--bg-soft); transform: scale(1.05); }
+    .theme-btn, .menu-btn { background: none; border: 1px solid var(--border); border-radius: 12px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.2s; color: var(--ink); }
+    .theme-btn:hover, .menu-btn:hover { background: var(--bg-soft); transform: scale(1.05); }
+    .menu-btn { display: none; }
+    .mobile-menu { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--nav-bg); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); padding: 20px 28px; flex-direction: column; gap: 16px; z-index: 99; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-size: 1rem; font-weight: 500; padding: 8px 0; color: var(--ink); }
     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 0.94rem; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
     .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px rgba(255, 153, 51, 0.35); }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 153, 51, 0.45); }
@@ -112,11 +116,25 @@
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; text-align: center; color: var(--muted); font-size: 0.84rem; }
     @media (max-width: 900px) {
-      .hero h1 { font-size: 3rem; }
-      .features, .steps, .benefits, .footer-grid, .stats { grid-template-columns: 1fr; flex-direction: column; gap: 28px; }
-      .nav-links { display: none; }
-      .hero-actions { flex-direction: column; align-items: center; }
+      .container { padding: 0 20px; }
       .hero { padding: 100px 0 70px; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero p { font-size: 1.05rem; }
+      .features, .steps, .benefits, .footer-grid, .stats { grid-template-columns: 1fr; gap: 24px; }
+      .stats { flex-direction: column; align-items: center; gap: 32px; }
+      .nav-links { display: none; }
+      .menu-btn { display: flex; }
+      .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
+      .section { padding: 80px 0; }
+      .section-header h2 { font-size: 2rem; }
+      .cta { padding: 80px 0; }
+      .cta h2 { font-size: 2.2rem; }
+      .logo span { font-size: 1.05rem; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.2rem; }
+      .btn { width: 100%; max-width: 280px; }
+      .feature, .step { padding: 28px 20px; }
     }
   </style>
 </head>
@@ -135,6 +153,17 @@
         <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-icon">🌙</span></button>
         <a href="contact.html" class="btn btn-primary">Get Started</a>
       </div>
+      <div style="display:flex;gap:10px;align-items:center;">
+        <button class="theme-btn" id="theme-toggle-mobile" aria-label="Toggle dark mode"><span id="theme-icon-mobile">🌙</span></button>
+        <button class="menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#features">Features</a>
+      <a href="#how">How it Works</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="contact.html" class="btn btn-primary" style="text-align:center;">Get Started</a>
     </div>
   </nav>
 
@@ -240,16 +269,29 @@
   <script>
     (function() {
       const html = document.documentElement;
-      const toggle = document.getElementById('theme-toggle');
-      const icon = document.getElementById('theme-icon');
+      const toggles = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+      const icons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
       function setTheme(dark) {
-        if (dark) { html.classList.add('dark'); if (icon) icon.textContent = '☀️'; localStorage.setItem('theme', 'dark'); }
-        else { html.classList.remove('dark'); if (icon) icon.textContent = '🌙'; localStorage.setItem('theme', 'light'); }
+        if (dark) { html.classList.add('dark'); icons.forEach(i => { if (i) i.textContent = '☀️'; }); localStorage.setItem('theme', 'dark'); }
+        else { html.classList.remove('dark'); icons.forEach(i => { if (i) i.textContent = '🌙'; }); localStorage.setItem('theme', 'light'); }
       }
       const saved = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setTheme(saved === 'dark' || (!saved && prefersDark));
-      if (toggle) toggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
+      toggles.forEach(t => { if (t) t.addEventListener('click', () => setTheme(!html.classList.contains('dark'))); });
+
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('open');
+          menuBtn.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          menuBtn.textContent = '☰';
+        }));
+      }
     })();
   </script>
 </body>
