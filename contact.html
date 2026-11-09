@@ -39,16 +39,22 @@
     .info div { margin-bottom: 32px; }
     .info strong { display: block; margin-bottom: 6px; font-size: 0.92rem; }
     @media (max-width: 800px) {
-      .container { padding: 0 20px; }
-      .grid { grid-template-columns: 1fr; gap: 40px; }
-      h1 { font-size: 2.2rem; }
-      form { padding: 28px 20px; }
-      .page { padding: 60px 0 80px; }
-      .nav-inner { padding: 0 20px; }
-      .logo span { font-size: 1.05rem; }
+      .container { padding: 0 16px; }
+      .grid { grid-template-columns: 1fr; gap: 32px; }
+      h1 { font-size: 2.1rem; }
+      form { padding: 24px 16px; }
+      .page { padding: 40px 0 60px; }
+      .nav-inner { padding: 0 16px; height: 64px; }
+      .logo span { font-size: 1rem; }
+      .logo img { width: 32px; height: 32px; }
     }
     @media (max-width: 480px) {
       .btn-primary { width: 100%; }
+      h1 { font-size: 1.85rem; }
+      .page { padding: 32px 0 48px; }
+      form { padding: 20px 14px; }
+      input, textarea { padding: 12px 14px; font-size: 1rem; }
+      .container { padding: 0 14px; }
     }
   </style>
 </head>
