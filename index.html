@@ -11,72 +11,96 @@
     :root {
       --primary: #FF9933;
       --primary-dark: #e67e00;
-      --primary-soft: rgba(255, 153, 51, 0.08);
+      --primary-soft: rgba(255, 153, 51, 0.12);
       --ink: #0f0f0f;
       --muted: #6b6b6b;
       --border: #efefef;
       --bg: #ffffff;
       --bg-soft: #fafafa;
-      --radius: 16px;
+      --radius: 20px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { text-decoration: none; color: inherit; }
-    .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate { animation: fadeUp 0.8s ease-out both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
 
     /* Nav */
-    nav { position: sticky; top: 0; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); z-index: 100; }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .logo { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.15rem; letter-spacing: -0.02em; }
-    .logo svg { width: 28px; height: 28px; }
-    .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    nav { position: sticky; top: 0; background: rgba(255,255,255,0.75); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); z-index: 100; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; }
+    .logo svg { width: 32px; height: 32px; transition: transform 0.3s ease; }
+    .logo:hover svg { transform: rotate(8deg) scale(1.05); }
+    .nav-links { display: flex; gap: 36px; align-items: center; }
+    .nav-links a { font-size: 0.94rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; transition: all 0.2s ease; }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-dark); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 0.94rem; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+    .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px rgba(255, 153, 51, 0.35); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 153, 51, 0.45); }
     .btn-outline { border: 1px solid var(--border); color: var(--ink); background: white; }
-    .btn-outline:hover { border-color: #ddd; background: var(--bg-soft); }
+    .btn-outline:hover { border-color: #ddd; background: var(--bg-soft); transform: translateY(-1px); }
 
     /* Hero */
-    .hero { padding: 120px 0 80px; }
-    .hero-inner { max-width: 720px; margin: 0 auto; text-align: center; }
-    .eyebrow { display: inline-block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); background: var(--primary-soft); padding: 6px 12px; border-radius: 999px; margin-bottom: 28px; }
-    .hero h1 { font-family: 'Outfit', sans-serif; font-size: 4rem; font-weight: 700; line-height: 1.02; letter-spacing: -0.045em; margin-bottom: 20px; }
-    .hero h1 span { color: var(--primary); }
-    .hero p { font-size: 1.15rem; color: var(--muted); max-width: 520px; margin: 0 auto 36px; }
-    .hero-actions { display: flex; gap: 12px; justify-content: center; }
-    .stats { display: flex; gap: 48px; justify-content: center; margin-top: 72px; padding-top: 40px; border-top: 1px solid var(--border); }
-    .stat strong { display: block; font-family: 'Outfit', sans-serif; font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; }
-    .stat span { font-size: 0.85rem; color: var(--muted); }
+    .hero { padding: 140px 0 100px; position: relative; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,153,51,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; text-align: center; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); background: var(--primary-soft); padding: 7px 14px; border-radius: 999px; margin-bottom: 28px; }
+    .hero h1 { font-family: 'Outfit', sans-serif; font-size: 4.4rem; font-weight: 700; line-height: 1.0; letter-spacing: -0.05em; margin-bottom: 22px; }
+    .hero h1 span { background: linear-gradient(135deg, #FF9933, #ffb366); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: 1.2rem; color: var(--muted); max-width: 540px; margin: 0 auto 40px; }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; }
+    .stats { display: flex; gap: 56px; justify-content: center; margin-top: 88px; padding-top: 48px; border-top: 1px solid var(--border); }
+    .stat strong { display: block; font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; }
+    .stat span { font-size: 0.88rem; color: var(--muted); }
 
     /* Features */
-    .section { padding: 100px 0; }
-    .section-header { text-align: center; max-width: 480px; margin: 0 auto 56px; }
-    .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
-    .section-header p { color: var(--muted); }
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .feature { padding: 32px 28px; border-radius: var(--radius); border: 1px solid var(--border); background: white; transition: all 0.25s ease; }
-    .feature:hover { border-color: #e5e5e5; box-shadow: 0 12px 32px -8px rgba(0,0,0,0.06); transform: translateY(-2px); }
-    .feature-icon { width: 40px; height: 40px; background: var(--primary-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 1.25rem; }
-    .feature h3 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
-    .feature p { color: var(--muted); font-size: 0.95rem; }
+    .section { padding: 120px 0; }
+    .section-header { text-align: center; max-width: 520px; margin: 0 auto 64px; }
+    .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
+    .section-header p { color: var(--muted); font-size: 1.05rem; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature { padding: 36px 32px; border-radius: var(--radius); border: 1px solid var(--border); background: white; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+    .feature::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(255,153,51,0.03)); opacity: 0; transition: opacity 0.3s; }
+    .feature:hover { border-color: #e8e8e8; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08); transform: translateY(-6px); }
+    .feature:hover::before { opacity: 1; }
+    .feature-icon { width: 48px; height: 48px; background: var(--primary-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; font-size: 1.4rem; transition: transform 0.3s; }
+    .feature:hover .feature-icon { transform: scale(1.08); }
+    .feature h3 { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .feature p { color: var(--muted); font-size: 0.96rem; }
 
     /* CTA */
-    .cta { padding: 100px 0; background: var(--bg-soft); text-align: center; }
-    .cta h2 { font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 12px; }
-    .cta p { color: var(--muted); margin-bottom: 28px; }
+    .cta { padding: 120px 0; background: linear-gradient(180deg, var(--bg-soft) 0%, #fff 100%); text-align: center; }
+    .cta h2 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
+    .cta p { color: var(--muted); margin-bottom: 32px; font-size: 1.1rem; }
 
     /* Footer */
-    footer { padding: 56px 0 32px; border-top: 1px solid var(--border); }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-    .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; text-align: center; color: var(--muted); font-size: 0.82rem; }
+    footer { padding: 72px 0 40px; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; text-align: center; color: var(--muted); font-size: 0.84rem; }
 
     @media (max-width: 900px) {
-      .hero h1 { font-size: 2.8rem; }
-      .features, .footer-grid, .stats { grid-template-columns: 1fr; flex-direction: column; gap: 24px; }
+      .hero h1 { font-size: 3rem; }
+      .features, .footer-grid, .stats { grid-template-columns: 1fr; flex-direction: column; gap: 28px; }
       .nav-links { display: none; }
       .hero-actions { flex-direction: column; align-items: center; }
+      .hero { padding: 100px 0 70px; }
     }
   </style>
 </head>
@@ -104,15 +128,15 @@
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
-        <div class="eyebrow">Property Maintenance</div>
-        <h1>Work that stays<br><span>organized.</span></h1>
-        <p>Jobs, quotes, invoices, and properties — managed in one calm workspace. Built for teams who prefer clarity.</p>
-        <div class="hero-actions">
+        <div class="eyebrow animate">Property Maintenance</div>
+        <h1 class="animate delay-1">Work that stays<br><span>organized.</span></h1>
+        <p class="animate delay-2">Jobs, quotes, invoices, and properties — managed in one calm workspace. Built for teams who prefer clarity.</p>
+        <div class="hero-actions animate delay-3">
           <a href="contact.html" class="btn btn-primary">Request a Demo</a>
           <a href="#features" class="btn btn-outline">See Features</a>
         </div>
       </div>
-      <div class="stats">
+      <div class="stats animate delay-4">
         <div class="stat"><strong>P1–P4</strong><span>Priority levels</span></div>
         <div class="stat"><strong>Quotes →</strong><span>Invoices</span></div>
         <div class="stat"><strong>Secure</strong><span>S3 uploads</span></div>
@@ -158,23 +182,23 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="logo" style="margin-bottom:10px;">
-            <svg viewBox="0 0 40 40" width="24" height="24"><circle cx="20" cy="20" r="18" fill="#FF9933"/><path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none"/><path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none"/><circle cx="20" cy="14" r="2.5" fill="white"/></svg>
+          <div class="logo" style="margin-bottom:12px;">
+            <svg viewBox="0 0 40 40" width="26" height="26"><circle cx="20" cy="20" r="18" fill="#FF9933"/><path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none"/><path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none"/><circle cx="20" cy="14" r="2.5" fill="white"/></svg>
             Trade Help Desk
           </div>
-          <p style="color:var(--muted);font-size:0.9rem;max-width:260px;">Property maintenance and field service, simplified.</p>
+          <p style="color:var(--muted);font-size:0.92rem;max-width:260px;">Property maintenance and field service, simplified.</p>
         </div>
         <div>
-          <strong style="font-size:0.85rem;">Product</strong>
-          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--muted);"><a href="#features">Features</a><a href="contact.html">Contact</a></div>
+          <strong style="font-size:0.88rem;">Product</strong>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:0.92rem;color:var(--muted);"><a href="#features">Features</a><a href="contact.html">Contact</a></div>
         </div>
         <div>
-          <strong style="font-size:0.85rem;">Legal</strong>
-          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--muted);"><a href="privacy.html">Privacy Policy</a></div>
+          <strong style="font-size:0.88rem;">Legal</strong>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:0.92rem;color:var(--muted);"><a href="privacy.html">Privacy Policy</a></div>
         </div>
         <div>
-          <strong style="font-size:0.85rem;">Connect</strong>
-          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--muted);"><a href="mailto:hello@tradehelpdesk.com">hello@tradehelpdesk.com</a></div>
+          <strong style="font-size:0.88rem;">Connect</strong>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;font-size:0.92rem;color:var(--muted);"><a href="mailto:hello@tradehelpdesk.com">hello@tradehelpdesk.com</a></div>
         </div>
       </div>
       <div class="footer-bottom">© 2026 Trade Help Desk</div>
