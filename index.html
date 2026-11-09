@@ -3,11 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trade Help Desk — Property Maintenance Made Simple</title>
+  <title>Trade Help Desk — Property Maintenance & Field Service Management</title>
+  <meta name="description" content="Trade Help Desk helps property maintenance and field service teams manage jobs, quotes, invoices, and properties in one calm, organized workspace. Built for clarity." />
+  <meta name="keywords" content="property maintenance software, field service management, job tracking, quotes to invoices, trade help desk" />
+  <meta name="author" content="Trade Help Desk" />
+  <meta property="og:title" content="Trade Help Desk — Property Maintenance Made Simple" />
+  <meta property="og:description" content="Jobs, quotes, invoices, and properties managed in one calm workspace. Built for teams who prefer clarity." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zahidkhan123.github.io/Trade_help_desk_Web/" />
+  <meta property="og:image" content="https://zahidkhan123.github.io/Trade_help_desk_Web/PKVbD.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" sizes="32x32" href="z3yGp.png">
   <link rel="icon" type="image/png" sizes="16x16" href="yK8Gq.png">
   <link rel="apple-touch-icon" sizes="180x180" href="PKVbD.png">
-
+  <link rel="canonical" href="https://zahidkhan123.github.io/Trade_help_desk_Web/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -22,9 +31,23 @@
       --bg: #ffffff;
       --bg-soft: #fafafa;
       --radius: 20px;
+      --nav-bg: rgba(255,255,255,0.75);
+      --card: #ffffff;
+      --shadow: rgba(0,0,0,0.08);
+    }
+    html.dark {
+      --ink: #f5f5f5;
+      --muted: #a0a0a0;
+      --border: #2a2a2a;
+      --bg: #0f0f0f;
+      --bg-soft: #1a1a1a;
+      --nav-bg: rgba(15,15,15,0.8);
+      --card: #1a1a1a;
+      --shadow: rgba(0,0,0,0.4);
+      --primary-soft: rgba(255, 153, 51, 0.18);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; transition: background 0.3s, color 0.3s; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -33,17 +56,19 @@
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
     .delay-4 { animation-delay: 0.4s; }
-    nav { position: sticky; top: 0; background: rgba(255,255,255,0.75); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(0,0,0,0.04); z-index: 100; }
+    nav { position: sticky; top: 0; background: var(--nav-bg); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); z-index: 100; transition: background 0.3s; }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .logo { display: flex; align-items: center; gap: 10px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; }
     .logo img { width: 40px; height: 40px; object-fit: contain; border-radius: 8px; }
     .nav-links { display: flex; gap: 36px; align-items: center; }
     .nav-links a { font-size: 0.94rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
+    .theme-btn { background: none; border: 1px solid var(--border); border-radius: 12px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.2s; color: var(--ink); }
+    .theme-btn:hover { background: var(--bg-soft); transform: scale(1.05); }
     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 0.94rem; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
     .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 14px rgba(255, 153, 51, 0.35); }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 153, 51, 0.45); }
-    .btn-outline { border: 1px solid var(--border); color: var(--ink); background: white; }
+    .btn-outline { border: 1px solid var(--border); color: var(--ink); background: var(--card); }
     .btn-outline:hover { border-color: #ddd; background: var(--bg-soft); transform: translateY(-1px); }
     .hero { padding: 140px 0 100px; position: relative; }
     .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,153,51,0.08) 0%, transparent 70%); pointer-events: none; }
@@ -61,9 +86,9 @@
     .section-header h2 { font-family: 'Outfit', sans-serif; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
     .section-header p { color: var(--muted); font-size: 1.05rem; }
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .feature { padding: 36px 32px; border-radius: var(--radius); border: 1px solid var(--border); background: white; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+    .feature { padding: 36px 32px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--card); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
     .feature::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent, rgba(255,153,51,0.03)); opacity: 0; transition: opacity 0.3s; }
-    .feature:hover { border-color: #e8e8e8; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.08); transform: translateY(-6px); }
+    .feature:hover { border-color: #e8e8e8; box-shadow: 0 20px 40px -12px var(--shadow); transform: translateY(-6px); }
     .feature:hover::before { opacity: 1; }
     .feature-icon { width: 48px; height: 48px; background: var(--primary-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; font-size: 1.4rem; transition: transform 0.3s; }
     .feature:hover .feature-icon { transform: scale(1.08); }
@@ -80,7 +105,7 @@
     .benefit-icon { width: 40px; height: 40px; background: var(--primary-soft); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .benefit h4 { font-size: 1.05rem; margin-bottom: 4px; }
     .benefit p { color: var(--muted); font-size: 0.92rem; }
-    .cta { padding: 120px 0; background: linear-gradient(180deg, var(--bg-soft) 0%, #fff 100%); text-align: center; }
+    .cta { padding: 120px 0; background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%); text-align: center; }
     .cta h2 { font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 14px; }
     .cta p { color: var(--muted); margin-bottom: 32px; font-size: 1.1rem; }
     footer { padding: 72px 0 40px; border-top: 1px solid var(--border); }
@@ -99,7 +124,7 @@
   <nav>
     <div class="container nav-inner">
       <a href="index.html" class="logo">
-        <img src="PKVbD.png" alt="Trade Help Desk">
+        <img src="PKVbD.png" alt="Trade Help Desk Logo">
         <span>Trade Help Desk</span>
       </a>
       <div class="nav-links">
@@ -107,6 +132,7 @@
         <a href="#how">How it Works</a>
         <a href="contact.html">Contact</a>
         <a href="privacy.html">Privacy</a>
+        <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode"><span id="theme-icon">🌙</span></button>
         <a href="contact.html" class="btn btn-primary">Get Started</a>
       </div>
     </div>
@@ -168,7 +194,7 @@
             <div class="benefit"><div class="benefit-icon">✓</div><div><h4>Everything linked</h4><p>Jobs, properties, clients, and payments stay connected.</p></div></div>
           </div>
         </div>
-        <div style="background: white; border: 1px solid var(--border); border-radius: 24px; padding: 48px; text-align: center;">
+        <div style="background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 48px; text-align: center;">
           <div style="font-size: 3rem; margin-bottom: 16px;">📋</div>
           <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; margin-bottom: 8px;">One workspace</h3>
           <p style="color: var(--muted);">Jobs, quotes, invoices, and properties in one calm place.</p>
@@ -190,7 +216,7 @@
       <div class="footer-grid">
         <div>
           <div class="logo" style="margin-bottom:12px;">
-            <img src="PKVbD.png" alt="Trade Help Desk" style="width:36px;height:36px;">
+            <img src="PKVbD.png" alt="Trade Help Desk Logo" style="width:36px;height:36px;">
             <span>Trade Help Desk</span>
           </div>
           <p style="color:var(--muted);font-size:0.92rem;max-width:260px;">Property maintenance and field service, simplified.</p>
@@ -211,5 +237,20 @@
       <div class="footer-bottom">© 2026 Trade Help Desk</div>
     </div>
   </footer>
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const toggle = document.getElementById('theme-toggle');
+      const icon = document.getElementById('theme-icon');
+      function setTheme(dark) {
+        if (dark) { html.classList.add('dark'); if (icon) icon.textContent = '☀️'; localStorage.setItem('theme', 'dark'); }
+        else { html.classList.remove('dark'); if (icon) icon.textContent = '🌙'; localStorage.setItem('theme', 'light'); }
+      }
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(saved === 'dark' || (!saved && prefersDark));
+      if (toggle) toggle.addEventListener('click', () => setTheme(!html.classList.contains('dark')));
+    })();
+  </script>
 </body>
 </html>
