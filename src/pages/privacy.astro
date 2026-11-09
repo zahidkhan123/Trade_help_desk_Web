@@ -105,7 +105,7 @@ const mail = `mailto:${site.privacyEmail}`;
 
   @media (max-width: 860px) {
     .layout { grid-template-columns: 1fr; }
-    .toc { position: static; padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-soft); }
+    .toc { position: static; padding: 18px 20px; border: 1px solid var(--glass-border); border-radius: 20px; background: var(--glass-bg); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge); }
     .toc ol { border: 0; columns: 2; column-gap: 20px; }
     .toc a { padding-left: 0; border: 0; }
   }

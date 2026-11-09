@@ -20,7 +20,7 @@ const features = [
 
     <div class="grid">
       {features.map((f, i) => (
-        <article class="card" data-reveal style={`--d: ${(i % 3) * 70}ms`}>
+        <article class="card glass" data-reveal style={`--d: ${(i % 3) * 70}ms`}>
           <span class="icon-wrap"><Icon name={f.icon} size={22} /></span>
           <h3>{f.title}</h3>
           <p>{f.text}</p>
@@ -34,15 +34,15 @@ const features = [
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .card {
     position: relative; padding: 30px 28px; border-radius: var(--radius-lg);
-    background: var(--card); border: 1px solid var(--border);
-    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s;
+    box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge), var(--shadow-sm);
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background-color 0.35s;
   }
   .card::before {
     content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
     background: radial-gradient(400px circle at 0% 0%, color-mix(in srgb, var(--brand) 9%, transparent), transparent 60%);
     opacity: 0; transition: opacity 0.35s;
   }
-  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+  .card:hover { transform: translateY(-4px); background: var(--glass-bg-strong); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge), var(--shadow-lg); }
   .card:hover::before { opacity: 1; }
   .icon-wrap {
     width: 48px; height: 48px; display: grid; place-items: center; border-radius: 14px;

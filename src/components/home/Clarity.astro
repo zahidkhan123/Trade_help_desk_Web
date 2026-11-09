@@ -36,10 +36,12 @@ const lines = [
 
     <!-- Illustrative quote → invoice card (sample data) -->
     <div class="doc-stack" data-reveal style="--d: 120ms" aria-hidden="true">
-      <div class="doc back">
+      <span class="orb orb-a o1"></span>
+      <span class="orb orb-b o2"></span>
+      <div class="doc back glass">
         <div class="doc-head"><span class="doc-type">Quote</span><span class="pill pill-muted">Q-1042</span></div>
       </div>
-      <div class="doc front">
+      <div class="doc front glass">
         <div class="doc-head">
           <div>
             <span class="doc-type">Invoice</span>
@@ -63,6 +65,7 @@ const lines = [
 </section>
 
 <style>
+  #why { overflow-x: clip; }
   .inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 88px); align-items: center; }
   .section-head { margin-bottom: 36px; }
   .benefits { list-style: none; padding: 0; display: grid; gap: 14px; }
@@ -70,20 +73,22 @@ const lines = [
     display: flex; gap: 16px; align-items: flex-start; padding: 18px; border-radius: var(--radius);
     border: 1px solid transparent; transition: background-color 0.25s, border-color 0.25s;
   }
-  .benefits li:hover { background: var(--bg-soft); border-color: var(--border); }
+  .benefits li:hover { background: var(--glass-bg); border-color: var(--glass-border); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge); }
   .b-icon { width: 42px; height: 42px; flex-shrink: 0; display: grid; place-items: center; border-radius: 12px; background: var(--brand-soft); color: var(--brand-ink); }
   h3 { font-family: var(--font-sans); font-size: 1.02rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 4px; }
   .benefits p { color: var(--muted); font-size: 0.94rem; }
 
   .doc-stack { position: relative; padding: 58px 28px 0 0; }
-  .doc { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-lg); }
-  .back { position: absolute; inset: 0 0 60px 28px; transform: rotate(2.5deg); transform-origin: top right; box-shadow: var(--shadow-md); background: var(--bg-soft); padding: 18px 22px; }
+  .doc { border-radius: 24px; padding: 24px; }
+  .o1 { width: 220px; height: 220px; top: 20px; right: -30px; }
+  .o2 { width: 150px; height: 150px; bottom: -20px; left: -30px; }
+  .back { position: absolute; inset: 0 0 60px 28px; transform: rotate(2.5deg); transform-origin: top right; padding: 18px 22px; z-index: 1; }
   .back .doc-type { font-size: 1.05rem; color: var(--muted); }
-  .front { position: relative; }
+  .front { position: relative; z-index: 2; background: var(--glass-bg-strong); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge), var(--shadow-lg); }
   .doc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
   .doc-type { display: block; font-family: var(--font-display); font-size: 1.35rem; font-weight: 650; }
   .doc-ref { font-size: 0.8rem; color: var(--muted); }
-  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; border-radius: 12px; background: var(--bg-soft); margin-bottom: 18px; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--bg-sunken) 55%, transparent); margin-bottom: 18px; }
   .meta span { display: block; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
   .meta strong { font-size: 0.88rem; font-weight: 600; display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
   .meta em { font-style: normal; }

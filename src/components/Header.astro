@@ -7,30 +7,30 @@ const path = Astro.url.pathname.replace(/(\.html|\/)$/, '') || '/';
 const isActive = (href: string) => !href.includes('#') && href === path;
 ---
 <header class="site-header" data-header>
-  <div class="container bar">
-    <Logo />
+  <div class="container">
+    <div class="bar glass">
+      <Logo />
 
-    <nav class="desktop-nav" aria-label="Main">
-      {nav.map((item) => (
-        <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
-      ))}
-    </nav>
+      <nav class="desktop-nav" aria-label="Main">
+        {nav.map((item) => (
+          <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+        ))}
+      </nav>
 
-    <div class="actions">
-      <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark mode">
-        <Icon name="moon" class="i-moon" size={18} />
-        <Icon name="sun" class="i-sun" size={18} />
-      </button>
-      <a href="/contact" class="btn btn-primary cta">Request a demo</a>
-      <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
-        <Icon name="menu" class="i-open" size={20} />
-        <Icon name="x" class="i-close" size={20} />
-      </button>
+      <div class="actions">
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Switch to dark mode">
+          <Icon name="moon" class="i-moon" size={18} />
+          <Icon name="sun" class="i-sun" size={18} />
+        </button>
+        <a href="/contact" class="btn btn-primary cta">Request a demo</a>
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+          <Icon name="menu" class="i-open" size={20} />
+          <Icon name="x" class="i-close" size={20} />
+        </button>
+      </div>
     </div>
-  </div>
 
-  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" data-mobile-nav hidden>
-    <div class="container">
+    <nav id="mobile-nav" class="mobile-nav glass" aria-label="Mobile" data-mobile-nav hidden>
       {nav.map((item) => (
         <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
           {item.label}
@@ -38,38 +38,39 @@ const isActive = (href: string) => !href.includes('#') && href === path;
         </a>
       ))}
       <a href="/contact" class="btn btn-primary btn-lg">Request a demo</a>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </header>
 
 <style>
-  .site-header {
-    position: sticky; top: 0; z-index: 100;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    backdrop-filter: saturate(160%) blur(18px);
-    -webkit-backdrop-filter: saturate(160%) blur(18px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.25s, box-shadow 0.25s;
+  .site-header { position: sticky; top: 0; z-index: 100; padding-top: 12px; }
+  .site-header > .container { position: relative; }
+  .bar {
+    height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 0 10px 0 18px; border-radius: 22px;
+    background: var(--glass-bg);
+    transition: background-color 0.3s, box-shadow 0.3s;
   }
-  .site-header.scrolled { border-bottom-color: var(--border); box-shadow: 0 6px 20px -16px rgba(0, 0, 0, 0.35); }
-  .bar { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .site-header.scrolled .bar { background: var(--glass-bg-strong); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge), var(--shadow-lg); }
 
-  .desktop-nav { display: flex; gap: 4px; }
+  .desktop-nav { display: flex; gap: 2px; padding: 4px; border-radius: 14px; }
   .desktop-nav a {
-    padding: 8px 14px; border-radius: 10px; font-size: 0.94rem; font-weight: 500; color: var(--muted);
-    transition: color 0.2s, background-color 0.2s;
+    padding: 8px 14px; border-radius: 11px; font-size: 0.93rem; font-weight: 500; color: var(--muted);
+    transition: color 0.2s, background-color 0.2s, box-shadow 0.2s;
   }
-  .desktop-nav a:hover { color: var(--ink); background: var(--bg-sunken); }
-  .desktop-nav a[aria-current='page'] { color: var(--ink); }
+  .desktop-nav a:hover { color: var(--ink); background: var(--glass-bg-strong); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge); }
+  .desktop-nav a[aria-current='page'] { color: var(--ink); background: var(--glass-bg-strong); box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge); }
 
-  .actions { display: flex; align-items: center; gap: 10px; }
-  .cta { min-height: 42px; }
+  .actions { display: flex; align-items: center; gap: 8px; }
+  .cta { min-height: 44px; border-radius: 14px; }
   .icon-btn {
-    width: 42px; height: 42px; display: grid; place-items: center;
-    border-radius: 12px; border: 1px solid var(--border); background: var(--card); cursor: pointer;
-    color: var(--ink-2); transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+    width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer;
+    border-radius: 14px; border: 1px solid var(--glass-border); background: var(--glass-bg);
+    box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge);
+    color: var(--ink-2); transition: background-color 0.2s, color 0.2s, transform 0.2s var(--ease);
   }
-  .icon-btn:hover { border-color: var(--border-strong); color: var(--ink); }
+  .icon-btn:hover { background: var(--glass-bg-strong); color: var(--ink); }
+  .icon-btn:active { transform: scale(0.94); }
   .icon-btn > :global(svg) { grid-area: 1 / 1; }
   :global(html.dark) .icon-btn :global(.i-moon), :global(html:not(.dark)) .icon-btn :global(.i-sun) { display: none; }
 
@@ -79,25 +80,31 @@ const isActive = (href: string) => !href.includes('#') && href === path;
   .menu-toggle[aria-expanded='true'] :global(.i-close) { display: block; }
 
   .mobile-nav {
-    position: absolute; left: 0; right: 0; top: 100%;
-    background: var(--bg); border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow-lg);
-    padding-block: 8px 20px;
-    animation: drop 0.25s var(--ease);
+    position: absolute; top: calc(100% + 10px); left: var(--gutter); right: var(--gutter);
+    display: flex; flex-direction: column; padding: 8px 18px 18px; border-radius: 22px;
+    background: var(--glass-bg-strong);
+    box-shadow: var(--glass-shine), 0 0 0 0.5px var(--glass-edge), var(--shadow-lg);
+    transform-origin: top center;
+    animation: drop 0.32s var(--ease);
   }
   .mobile-nav[hidden] { display: none; }
-  .mobile-nav .container { display: flex; flex-direction: column; }
   .mobile-nav a:not(.btn) {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 2px; font-size: 1.05rem; font-weight: 500; border-bottom: 1px solid var(--border); color: var(--ink);
+    padding: 15px 4px; font-size: 1.05rem; font-weight: 500; color: var(--ink);
+    border-bottom: 1px solid color-mix(in srgb, var(--border-strong) 60%, transparent);
   }
   .mobile-nav a:not(.btn) :global(svg) { color: var(--muted); }
   .mobile-nav .btn { margin-top: 18px; width: 100%; }
-  @keyframes drop { from { opacity: 0; transform: translateY(-8px); } }
+  @keyframes drop { from { opacity: 0; transform: translateY(-8px) scale(0.97); } }
 
   @media (max-width: 880px) {
     .desktop-nav, .cta { display: none; }
     .menu-toggle { display: grid; }
+  }
+  @media (max-width: 480px) {
+    .site-header { padding-top: 8px; }
+    .bar { height: 60px; padding: 0 8px 0 14px; border-radius: 18px; }
+    .icon-btn { width: 42px; height: 42px; border-radius: 12px; }
   }
 </style>
 
@@ -118,7 +125,7 @@ const isActive = (href: string) => !href.includes('#') && href === path;
     syncThemeLabel();
   });
 
-  // Header shadow on scroll
+  // Stronger glass once the page scrolls under the header
   const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -133,6 +140,9 @@ const isActive = (href: string) => !href.includes('#') && href === path;
   mobileNav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !mobileNav.hidden) { setMenu(false); menuBtn.focus(); }
+  });
+  document.addEventListener('click', (e) => {
+    if (!mobileNav.hidden && !header.contains(e.target as Node)) setMenu(false);
   });
   window.matchMedia('(min-width: 881px)').addEventListener('change', (e) => e.matches && setMenu(false));
 </script>
