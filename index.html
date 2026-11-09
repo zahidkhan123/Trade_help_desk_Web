@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade Help Desk — Property Maintenance Made Simple</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #FF9933;
+      --primary-dark: #e67e00;
+      --gray-50: #f8f9fa;
+      --gray-100: #f1f3f5;
+      --gray-200: #e9ecef;
+      --gray-600: #868e96;
+      --gray-800: #343a40;
+      --gray-900: #212529;
+      --white: #ffffff;
+      --shadow: 0 10px 40px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--gray-900); background: var(--white); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav { position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); z-index: 100; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.25rem; }
+    .logo svg { width: 36px; height: 36px; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { font-weight: 500; color: var(--gray-800); }
+    .nav-links a:hover { color: var(--primary); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 999px; font-weight: 600; transition: all 0.2s; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-outline { border: 2px solid var(--gray-200); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+
+    /* Hero */
+    .hero { padding: 100px 0 80px; background: linear-gradient(180deg, #fff8f0 0%, white 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.03em; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { font-size: 1.25rem; color: var(--gray-600); margin-bottom: 32px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 16px; }
+    .hero-visual { background: white; border-radius: 24px; box-shadow: var(--shadow); padding: 32px; border: 1px solid var(--gray-100); }
+    .stat-row { display: flex; gap: 24px; margin-top: 32px; }
+    .stat { text-align: center; }
+    .stat strong { display: block; font-size: 1.75rem; color: var(--primary); }
+
+    /* Features */
+    .section { padding: 100px 0; }
+    .section-header { text-align: center; max-width: 600px; margin: 0 auto 60px; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .feature { background: var(--gray-50); padding: 32px; border-radius: var(--radius); transition: transform 0.2s; }
+    .feature:hover { transform: translateY(-4px); }
+    .feature-icon { width: 56px; height: 56px; background: #fff3e6; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary); font-size: 1.5rem; }
+
+    /* CTA */
+    .cta { background: var(--gray-900); color: white; text-align: center; padding: 100px 0; }
+    .cta h2 { font-size: 2.75rem; margin-bottom: 16px; }
+    .cta p { opacity: 0.8; margin-bottom: 32px; font-size: 1.2rem; }
+
+    /* Footer */
+    footer { background: var(--gray-50); padding: 60px 0 30px; border-top: 1px solid var(--gray-200); }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    .footer-bottom { border-top: 1px solid var(--gray-200); padding-top: 24px; text-align: center; color: var(--gray-600); font-size: 0.9rem; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .features, .footer-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a href="/" class="logo">
+        <svg viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="18" fill="#FF9933"/>
+          <path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="20" cy="14" r="2.5" fill="white"/>
+        </svg>
+        Trade Help Desk
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="contact.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <h1>Property maintenance,<br><span>simplified.</span></h1>
+        <p>Manage jobs, quotes, invoices, and properties in one clean platform. Built for contractors and property managers who want less chaos and more control.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">Request a Demo</a>
+          <a href="#features" class="btn btn-outline">See Features</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><strong>P1–P4</strong> Priority jobs</div>
+          <div class="stat"><strong>Quotes →</strong> Invoices</div>
+          <div class="stat"><strong>S3</strong> Secure uploads</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div style="background:#fff8f0;border-radius:12px;padding:24px;text-align:center;">
+          <div style="font-size:3rem;margin-bottom:8px;">📋</div>
+          <strong>Job Board</strong>
+          <p style="color:var(--gray-600);margin-top:8px;">Assign, track, and complete maintenance in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Everything you need</h2>
+        <p>From the first job request to the paid invoice — handled in one place.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🔧</div>
+          <h3>Jobs & Priorities</h3>
+          <p>Create work orders with P1–P4 priority, categories, photos, and a full timeline.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📄</div>
+          <h3>Quotes & Invoices</h3>
+          <p>Professional quotes that convert to invoices. Multiple templates and currencies.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🏠</div>
+          <h3>Properties & Clients</h3>
+          <p>Manage sites, CRM contacts, and link everything to the right property.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to simplify your maintenance workflow?</h2>
+      <p>Get in touch and we’ll show you how Trade Help Desk works for your team.</p>
+      <a href="contact.html" class="btn btn-primary">Talk to Us</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom:12px;">
+            <svg viewBox="0 0 40 40" width="28" height="28"><circle cx="20" cy="20" r="18" fill="#FF9933"/><path d="M12 18c2-4 6-6 10-4s6 6 4 10" stroke="white" stroke-width="2.5" fill="none"/><path d="M28 22c-2 4-6 6-10 4s-6-6-4-10" stroke="white" stroke-width="2.5" fill="none"/><circle cx="20" cy="14" r="2.5" fill="white"/></svg>
+            Trade Help Desk
+          </div>
+          <p style="color:var(--gray-600);">Property maintenance and field service management, made simple.</p>
+        </div>
+        <div>
+          <strong>Product</strong>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"><a href="#features">Features</a><a href="contact.html">Contact</a></div>
+        </div>
+        <div>
+          <strong>Legal</strong>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"><a href="privacy.html">Privacy Policy</a></div>
+        </div>
+        <div>
+          <strong>Connect</strong>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"><a href="mailto:hello@tradehelpdesk.com">hello@tradehelpdesk.com</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Trade Help Desk. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>
